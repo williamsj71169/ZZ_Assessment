@@ -1,4 +1,6 @@
 
+# number checker
+
 
 def intcheck(question, low, high):
     valid = False
@@ -14,3 +16,5 @@ def intcheck(question, low, high):
         except ValueError:
             print(error)
             print()
+
+trial = intcheck("Pick a number between 1 and 3:", 1, 3)
