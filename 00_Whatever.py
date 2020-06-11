@@ -29,9 +29,6 @@ def as_statement(statement, char):
 lowest = 0
 highest = 1000
 
-num = random.randint(lowest, highest)
-num1 = random.randint(lowest, highest)
-# num2 = random.randint(lowest, highest)
 # num3 = random.randint(lowest, highest)
 # num4 = random.randint(lowest, highest)
 # num5 = random.randint(lowest, highest)
@@ -40,23 +37,12 @@ num1 = random.randint(lowest, highest)
 # num8 = random.randint(lowest, highest)
 
 
-print(num)
-# print(num1)
-# print(num2)
-# print(num3)
-# print(num4)
-# print(num5)
-# print(num6)
-# print(num7)
-# print(num8)
-
-
 # checks yes/no is really yes/no
-def yn_checker():
+def yn_checker(question):
     error = "Please choose yes or no (y / n) "
     valid = False
     while not valid:
-        response = input("Would you like to see the instructions? ").lower()
+        response = input(question).lower()
         print()
         if response == "yes" or response == "y":
             return "Yes"
@@ -67,7 +53,7 @@ def yn_checker():
             print()
 
 
-yes_no = yn_checker()
+yes_no = yn_checker("Would you like to see the instructions? ")
 if yes_no == "Yes":
 
     # instructions and welcome
@@ -76,21 +62,65 @@ if yes_no == "Yes":
     print("Welcome!")
     print("hi")
     print()
-    print("----------------------------------------------")
+    print("---------------------------------")
 
 
 # play_again loop start
 play_again = ""
 while play_again == "":
 
+    print()
+    _2_or_3 = intcheck("Would you like 2 or 3 numbers?", 2, 3)
+    if _2_or_3 == 3:
+        print("333")
+
+        rounds = intcheck("How many rounds?", 1, 10)
+        print()
+
+        win = 0
+        lose = 0
+        rounds_played = 0
+        while rounds_played < rounds:
+            # output amount of rounds and guesses allowed
+            round_of_rounds_3 = as_statement("*** Round {} of {} ***".format(rounds_played + 1, rounds), "*")
+
+            rounds_played += 1
+
+            num = random.randint(lowest, highest)
+            num1 = random.randint(lowest, highest)
+            num2 = random.randint(lowest, highest)
+
+            math = num + num1 + num2
+
+            # rounds = intcheck("How many rounds?", 1, 10)  #
+            question1 = intcheck("{} + {} + {}".format(num, num1, num2), 0, 3000)
+            if question1 == math:
+                print("Well done!")
+                win += 1
+            elif question1 != math:
+                print()
+                lose += 1
+                print("Sorry, Your Answer was Wrong!")
+                print("The Answer was {}".format(math))
+
+            print()
+            print("You have gotten to the end of the game")
+
+            final_3 = as_statement("### Wins:{}  |  Losses:{} ###".format(win, lose), "#")
+
+        play_again = (input("Push <enter> to play again or any other key to quit"))
+
     rounds = intcheck("How many rounds?", 1, 10)
     print()
 
+    win = 0
+    lose = 0
     rounds_played = 0
 
     while rounds_played < rounds:
         # output amount of rounds and guesses allowed
-        print("Round {} of {}".format(rounds_played + 1, rounds))
+        round_of_rounds = as_statement("*** Round {} of {} ***".format(rounds_played + 1, rounds), "*")
+
         print()
 
         rounds_played += 1
@@ -101,14 +131,19 @@ while play_again == "":
         math = num + num1
 
         # rounds = intcheck("How many rounds?", 1, 10)  #
-        question1 = intcheck("{} + {}".format(num, num1), math, math)
+        question1 = intcheck("{} + {}".format(num, num1), 0, 2000)
         if question1 == math:
             print("Well done!")
+            win += 1
         elif question1 != math:
+            print()
+            lose += 1
             print("Sorry, You Answer was Wrong!")
-            print("Teh Answer was {}".format(math))
+            print("The Answer was {}".format(math))
 
+    print()
     print("You have gotten to the end of the game")
+    final = as_statement("### Wins:{}  |  Losses:{} ###".format(win, lose), "#")
 
     play_again = (input("Push <enter> to play again/continue or any other key to quit"))
 

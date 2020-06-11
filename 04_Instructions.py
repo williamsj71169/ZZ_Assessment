@@ -1,4 +1,12 @@
 
+def as_statement(statement, char):
+    print()
+    print(char * len(statement))
+    print(statement)
+    print(char * len(statement))
+    print()
+    return ""
+
 
 # checks yes/no is really yes/no
 def yn_checker():
@@ -25,4 +33,4 @@ if yes_no == "Yes":
     print("Welcome!")
     print("hi")
     print()
-    print("----------------------------------------------")
+    print("---------------------------------")
