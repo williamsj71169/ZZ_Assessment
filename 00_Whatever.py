@@ -69,82 +69,88 @@ if yes_no == "Yes":
 play_again = ""
 while play_again == "":
 
-    print()
-    _2_or_3 = intcheck("Would you like 2 or 3 numbers?", 2, 3)
-    if _2_or_3 == 3:
-        print("333")
+    play_again_3 = ""
+    while play_again_3 == "":
 
-        rounds = intcheck("How many rounds?", 1, 10)
         print()
+        _2_or_3 = intcheck("Would you like 2 or 3 numbers?", 2, 3)
+        if _2_or_3 == 3:
+            print("333")
 
-        win = 0
-        lose = 0
-        rounds_played = 0
-        while rounds_played < rounds:
-            # output amount of rounds and guesses allowed
-            round_of_rounds_3 = as_statement("*** Round {} of {} ***".format(rounds_played + 1, rounds), "*")
+            rounds = intcheck("How many rounds?", 1, 10)
+            print()
 
-            rounds_played += 1
+            win = 0
+            lose = 0
+            rounds_played = 0
+            while rounds_played < rounds:
+                # output amount of rounds and guesses allowed
+                round_of_rounds_3 = as_statement("*** Round {} of {} ***".format(rounds_played + 1, rounds), "*")
 
-            num = random.randint(lowest, highest)
-            num1 = random.randint(lowest, highest)
-            num2 = random.randint(lowest, highest)
+                rounds_played += 1
 
-            math = num + num1 + num2
+                num = random.randint(lowest, highest)
+                num1 = random.randint(lowest, highest)
+                num2 = random.randint(lowest, highest)
 
-            # rounds = intcheck("How many rounds?", 1, 10)  #
-            question1 = intcheck("{} + {} + {}".format(num, num1, num2), 0, 3000)
-            if question1 == math:
-                print("Well done!")
-                win += 1
-            elif question1 != math:
-                print()
-                lose += 1
-                print("Sorry, Your Answer was Wrong!")
-                print("The Answer was {}".format(math))
+                math = num + num1 + num2
+
+                # rounds = intcheck("How many rounds?", 1, 10)  #
+                question1 = intcheck("{} + {} + {}".format(num, num1, num2), 0, 3000)
+                if question1 == math:
+                    print("Well done!")
+                    win += 1
+                elif question1 != math:
+                    print()
+                    lose += 1
+                    print("Sorry, Your Answer was Wrong!")
+                    print("The Answer was {}".format(math))
 
             print()
             print("You have gotten to the end of the game")
 
             final_3 = as_statement("### Wins:{}  |  Losses:{} ###".format(win, lose), "#")
 
-        play_again = (input("Push <enter> to play again or any other key to quit"))
+            play_again_3 = (input("Push <enter> to play again or any other key to quit"))
 
-    rounds = intcheck("How many rounds?", 1, 10)
-    print()
+        else:
 
-    win = 0
-    lose = 0
-    rounds_played = 0
-
-    while rounds_played < rounds:
-        # output amount of rounds and guesses allowed
-        round_of_rounds = as_statement("*** Round {} of {} ***".format(rounds_played + 1, rounds), "*")
-
-        print()
-
-        rounds_played += 1
-
-        num = random.randint(lowest, highest)
-        num1 = random.randint(lowest, highest)
-
-        math = num + num1
-
-        # rounds = intcheck("How many rounds?", 1, 10)  #
-        question1 = intcheck("{} + {}".format(num, num1), 0, 2000)
-        if question1 == math:
-            print("Well done!")
-            win += 1
-        elif question1 != math:
+            rounds = intcheck("How many rounds?", 1, 10)
             print()
-            lose += 1
-            print("Sorry, You Answer was Wrong!")
-            print("The Answer was {}".format(math))
 
-    print()
-    print("You have gotten to the end of the game")
-    final = as_statement("### Wins:{}  |  Losses:{} ###".format(win, lose), "#")
+            win = 0
+            lose = 0
+            rounds_played = 0
 
-    play_again = (input("Push <enter> to play again/continue or any other key to quit"))
+            while rounds_played < rounds:
+                # output amount of rounds and guesses allowed
+                round_of_rounds = as_statement("*** Round {} of {} ***".format(rounds_played + 1, rounds), "*")
 
-print("Thank You For Playing")
+                print()
+
+                rounds_played += 1
+
+                num = random.randint(lowest, highest)
+                num1 = random.randint(lowest, highest)
+
+                math = num + num1
+
+                # rounds = intcheck("How many rounds?", 1, 10)  #
+                question1 = intcheck("{} + {}".format(num, num1), 0, 2000)
+                if question1 == math:
+                    print("Well done!")
+                    win += 1
+                elif question1 != math:
+                    print()
+                    lose += 1
+                    print("Sorry, You Answer was Wrong!")
+                    print("The Answer was {}".format(math))
+
+            print()
+            print("You have gotten to the end of the game")
+            final = as_statement("### Wins:{}  |  Losses:{} ###".format(win, lose), "#")
+
+        play_again = (input("Push <enter> to play again/continue or any other key to quit"))
+        if play_again != "":
+
+            print("Thank You For Playing")
