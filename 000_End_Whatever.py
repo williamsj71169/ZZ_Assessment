@@ -69,20 +69,7 @@ if yes_no == "Yes":
 play_again = ""
 while play_again == "":
 
-    # '''
-    num = random.randint(lowest, highest)
-    print(num)
-    num1 = random.randint(lowest, highest)
-    print(num1)
-
-    two_three = intcheck("Would you like 2 numbers or 3?", 2, 3)
-    if two_three == 2:
-        question1 = ("{} + {} = ".format(num, num1))
-        print("hhi")
-    else:
-        print("lol")
-        question1 = intcheck("lol", 1, 4)
-    # '''
+    game_summary = []  # Holds results from each round
 
     rounds = intcheck("How many rounds?", 1, 10)
     print()
@@ -100,15 +87,12 @@ while play_again == "":
         rounds_played += 1
 
         num = random.randint(lowest, highest)
-        print(num)
         num1 = random.randint(lowest, highest)
-        print(num1)
 
         math = num + num1
-        result = "{} + {} = {}".format(num, num1, math)
 
-        # question1 = intcheck("{} + {}".format(num, num1), 0, 2000)
-        print(intcheck(question1, 0, 2000))
+        # rounds = intcheck("How many rounds?", 1, 10)  #
+        question1 = intcheck("{} + {}".format(num, num1), 0, 2000)
         if question1 == math:
             print("Well done!")
             win += 1
@@ -117,9 +101,17 @@ while play_again == "":
             lose += 1
             print("Sorry, You Answer was Wrong!")
             print("The Answer was {}".format(math))
+        result = "{} + {} : User: {}, Answer: {}".format(num, num1, question1, math)
+
+        game_summary.append("Round #{} = {}".format(rounds_played, result))
 
     print()
     print("You have gotten to the end of the game")
     final = as_statement("### Wins:{}  |  Losses:{} ###".format(win, lose), "#")
+    # End of game, Print Stats
+    print()
+    print("**** Game History ****")
+    for item in game_summary:
+        print(item)
 
     play_again = (input("Push <enter> to play again/continue or any other key to quit"))

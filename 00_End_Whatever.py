@@ -105,7 +105,8 @@ while play_again == "":
         print(num1)
 
         math = num + num1
-        result = "{} + {} = {}".format(num, num1, math)
+        result = "{} + {} : User: {}, Answer: {}".format(num, num1, question1, math)
+        game_summary = []  # Holds results from each round
 
         # question1 = intcheck("{} + {}".format(num, num1), 0, 2000)
         print(intcheck(question1, 0, 2000))
@@ -118,8 +119,16 @@ while play_again == "":
             print("Sorry, You Answer was Wrong!")
             print("The Answer was {}".format(math))
 
-    print()
-    print("You have gotten to the end of the game")
+        game_summary.append("Round #{} = {}".format(rounds_played, result))
+
+        print()
+        print("You have gotten to the end of the game")
+        # End of game, Print Stats
+        print()
+        print("**** Game History ****")
+        for item in game_summary:
+            print(item)
+
     final = as_statement("### Wins:{}  |  Losses:{} ###".format(win, lose), "#")
 
     play_again = (input("Push <enter> to play again/continue or any other key to quit"))

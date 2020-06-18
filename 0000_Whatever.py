@@ -69,7 +69,7 @@ if yes_no == "Yes":
 play_again = ""
 while play_again == "":
 
-    '''
+    # '''
     num = random.randint(lowest, highest)
     print(num)
     num1 = random.randint(lowest, highest)
@@ -77,12 +77,12 @@ while play_again == "":
 
     two_three = intcheck("Would you like 2 numbers or 3?", 2, 3)
     if two_three == 2:
-        question1 = intcheck("{} + {}".format(num, num1), 0, 2000)
+        question1 = ("{} + {} = ".format(num, num1))
         print("hhi")
     else:
         print("lol")
         question1 = intcheck("lol", 1, 4)
-        '''
+    # '''
 
     rounds = intcheck("How many rounds?", 1, 10)
     print()
@@ -106,8 +106,8 @@ while play_again == "":
 
         math = num + num1
 
-        # rounds = intcheck("How many rounds?", 1, 10)  #
-        question1 = intcheck("{} + {}".format(num, num1), 0, 2000)
+        # question1 = intcheck("{} + {}".format(num, num1), 0, 2000)
+        print(intcheck(question1, 0, 2000))
         if question1 == math:
             print("Well done!")
             win += 1
