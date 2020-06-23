@@ -1,7 +1,6 @@
 # imports a random number (used for both numbers)
 import random
 
-
 # checks that what you are inputting is an integer
 
 
@@ -29,7 +28,6 @@ def as_statement(statement, char):
     print()
     return ""
 
-
 # establishes the high and low for numbers in questions
 lowest = 0
 highest = 1000
@@ -50,10 +48,10 @@ def yn_checker(question):
             print(error)
             print()
 
-
 # asks user if they would like to see the instructions
 yes_no = yn_checker("Would you like to see the instructions? ")
 if yes_no == "Yes":
+
     # instructions and welcome
     as_instructions = as_statement("--- Assessment - Instructions ---", "-")
     print("Welcome!")
@@ -65,11 +63,26 @@ if yes_no == "Yes":
     print()
     print("---------------------------------")
 
+win = 0
+lose = 0
+games_played = 0
+
+end = []  # Holds results from each round
+
 # play_again loop start
 play_again = ""
 while play_again == "":
 
     # asking the player if they would like to re-start their score
+    games_played += 1
+    if games_played > 1:
+        print("")
+        yes_no = yn_checker("Would you like to re-start your score board? ")
+        if yes_no == "Yes":
+            losses = 0
+            wins = 0
+            ties = 0
+    print("Game {}".format(games_played))
 
     game_summary = []  # Holds results from each round
 
@@ -81,8 +94,6 @@ while play_again == "":
     # establishes
 
     rounds_played = 0
-    win = 0
-    lose = 0
 
     while rounds_played < rounds:
         # output amount of rounds and guesses allowed
@@ -112,6 +123,7 @@ while play_again == "":
         result = "{} + {} : User: {}, Answer: {}".format(num, num1, question1, math)
 
         game_summary.append("Round #{} = {}".format(rounds_played, result))
+        end.append("Game {}: Round #{} = {}".format(games_played, rounds_played, result))
 
     print()
     print("You have gotten to the end of the game")
@@ -124,3 +136,8 @@ while play_again == "":
 
     print()
     play_again = (input("Push <enter> to play again/continue or any other key to quit"))
+
+print()
+print("**** All Games History ****")
+for thing in end:
+    print(thing)
