@@ -1,4 +1,4 @@
-# imports a random (turned into a number and used for both questions)
+# imports a random number (used for both numbers)
 import random
 
 # checks that what you are inputting is an integer
@@ -87,6 +87,7 @@ while play_again == "":
 
     game_summary = []  # Holds results from each round
 
+    print()
     # asks user how many round they would like to play
     rounds = intcheck("How many rounds?", 1, 10)
     print()
@@ -96,7 +97,7 @@ while play_again == "":
 
     while rounds_played < rounds:
         # output amount of rounds and guesses allowed
-        round_of_rounds = as_statement(" Round {} of {} ".format(rounds_played + 1, rounds), "*")
+        round_of_rounds = as_statement("*** Round {} of {} ***".format(rounds_played + 1, rounds), "*")
 
         print()
 
@@ -140,8 +141,7 @@ while play_again == "":
     play_again = (input("Push <enter> to play again/continue or any other key to quit"))
 
 # prints all info on all questions of all rounds of all games.
-if games_played >= 2:
-    print()
-    print("**** All Games History ****")
-    for thing in end:
-        print(thing)
+print()
+print("**** All Games History ****")
+for thing in end:
+    print(thing)
