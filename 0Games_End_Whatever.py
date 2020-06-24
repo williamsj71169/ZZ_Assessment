@@ -1,7 +1,7 @@
 # imports a random (turned into a number and used for both questions)
 import random
 
-# checks that what you are inputting is an integer
+# checks that what the user is inputting is an integer
 
 
 def intcheck(question, low, high):
@@ -28,7 +28,7 @@ def as_statement(statement, char):
     print()
     return ""
 
-# establishes the high and low for numbers in questions
+# establishes the high and low for numbers in the questions
 lowest = 0
 highest = 1000
 
@@ -55,18 +55,18 @@ if yes_no == "Yes":
     # instructions and welcome
     as_instructions = as_statement("--- Assessment - Instructions ---", "-")
     print("Welcome!")
-    print("This Game is easy, answer the ")
+    print("This Quiz is easy, answer the ")
     print("maths questions!!")
-    print("At the start of a new 'game' you can choose ")
+    print("At the start of a new 'quiz' you can choose ")
     print("to continue with your previous scores or ")
     print("start anew.")
     print()
     print("---------------------------------")
 
-# establishes that they user has not yet won, lost or played a game
+# establishes that they user has not yet won, lost or played a quiz
 win = 0
 lose = 0
-games_played = 0
+quizzes_played = 0
 
 end = []  # Holds all results
 
@@ -75,32 +75,32 @@ play_again = ""
 while play_again == "":
 
     # asking the player if they would like to re-start their score
-    games_played += 1
-    if games_played > 1:
+    quizzes_played += 1
+    if quizzes_played > 1:
         print("")
         yes_no = yn_checker("Would you like to re-start your score board? ")
         if yes_no == "Yes":
             losses = 0
             wins = 0
             ties = 0
-    game_num_output = as_statement(" Game {} ".format(games_played), "=")
+    quiz_num_output = as_statement(" Quiz {} ".format(quizzes_played), "=")
 
-    game_summary = []  # Holds results from each round
+    quiz_summary = []  # Holds results from each round
 
     # asks user how many round they would like to play
-    rounds = intcheck("How many rounds?", 1, 10)
+    questions = intcheck("How many questions?", 1, 10)
     print()
 
     # establishes that they user has not yet played a round
-    rounds_played = 0
+    questions_answered = 0
 
-    while rounds_played < rounds:
-        # output amount of rounds and guesses allowed
-        round_of_rounds = as_statement(" Round {} of {} ".format(rounds_played + 1, rounds), "*")
+    while questions_answered < questions:
+        # output amount of questions and guesses allowed
+        round_of_rounds = as_statement(" Round {} of {} ".format(questions_answered + 1, questions), "*")
 
         print()
 
-        rounds_played += 1
+        questions_answered += 1
 
         # is the import random made into a number
         num = random.randint(lowest, highest)
@@ -109,7 +109,7 @@ while play_again == "":
         math = num + num1
 
         # Asks the questions, compares the reply the answer, prints output (and correct answer if user was wrong)
-        question1 = intcheck("{} + {}".format(num, num1), 0, 2000)
+        question1 = intcheck("{} + {} = ".format(num, num1), 0, 2000)
         if question1 == math:
             print("Well done!")
             print()
@@ -121,27 +121,27 @@ while play_again == "":
             print("The Answer was {}".format(math))
             print()
 
-        # establishes the shells for the Game History(s)
-        result = "{} + {} : User: {}, Answer: {}".format(num, num1, question1, math)
-        game_summary.append("Round #{} = {}".format(rounds_played, result))
-        end.append("Game {}: Round #{} = {}".format(games_played, rounds_played, result))
+        # establishes the shells for the Quiz History(s)
+        result = "{} + {} = {} : {}".format(num, num1, math, question1)
+        quiz_summary.append("Question #{} : {}".format(questions_answered, result))
+        end.append("Quiz {}: Question #{} : {}".format(quizzes_played, questions_answered, result))
 
     print()
-    print("You have gotten to the end of the game")
+    print("You have gotten to the end of the quiz")
 
     final = as_statement("### Wins:{}  |  Losses:{} ###".format(win, lose), "#")
-    # End of game, Print Stats
+    # End of quiz, Print Stats
     print()
-    print("**** Game History ****")
-    for item in game_summary:
+    print("**** Quiz History ****")
+    for item in quiz_summary:
         print(item)
 
     print()
     play_again = (input("Push <enter> to play again/continue or any other key to quit"))
 
-# prints all info on all questions of all rounds of all games.
-if games_played >= 2:
+# prints all info on all questions of all Quizzes.
+if quizzes_played >= 2:
     print()
-    print("**** All Games History ****")
+    print("**** All Quizzes History ****")
     for thing in end:
         print(thing)

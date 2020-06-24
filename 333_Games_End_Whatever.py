@@ -1,7 +1,7 @@
-# imports a random number (used for both numbers)
+# imports a random (turned into a number and used for both questions)
 import random
 
-# checks that what you are inputting is an integer
+# checks that what the user is inputting is an integer
 
 
 def intcheck(question, low, high):
@@ -28,7 +28,7 @@ def as_statement(statement, char):
     print()
     return ""
 
-# establishes the high and low for numbers in questions
+# establishes the high and low for numbers in the questions
 lowest = 0
 highest = 1000
 
@@ -87,17 +87,16 @@ while play_again == "":
 
     game_summary = []  # Holds results from each round
 
-    print()
     # asks user how many round they would like to play
-    rounds = intcheck("How many rounds?", 1, 10)
+    questions = intcheck("How many questions?", 1, 10)
     print()
 
     # establishes that they user has not yet played a round
     rounds_played = 0
 
-    while rounds_played < rounds:
-        # output amount of rounds and guesses allowed
-        round_of_rounds = as_statement("*** Round {} of {} ***".format(rounds_played + 1, rounds), "*")
+    while rounds_played < questions:
+        # output amount of questions and guesses allowed
+        round_of_rounds = as_statement(" Round {} of {} ".format(rounds_played + 1, questions), "*")
 
         print()
 
@@ -140,8 +139,9 @@ while play_again == "":
     print()
     play_again = (input("Push <enter> to play again/continue or any other key to quit"))
 
-# prints all info on all questions of all rounds of all games.
-print()
-print("**** All Games History ****")
-for thing in end:
-    print(thing)
+# prints all info on all questions of all games.
+if games_played >= 2:
+    print()
+    print("**** All Games History ****")
+    for thing in end:
+        print(thing)
