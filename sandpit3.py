@@ -152,3 +152,13 @@ if quizzes_played >= 2:
     print("**** All Quizzes History ****")
     for thing in end:
         print(thing)
+
+
+''' if quizzes_played >= 2:
+        if quizzes_played != quizzes_played - 1:
+            print("it works?")
+        else:
+            print("nope")
+    else:
+        print("hi?")
+'''
