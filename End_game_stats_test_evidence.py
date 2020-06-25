@@ -48,21 +48,6 @@ def yn_checker(question):
             print(error)
             print()
 
-# asks user if they would like to see the instructions
-yes_no = yn_checker("Would you like to see the instructions? ")
-if yes_no == "Yes":
-
-    # instructions and welcome
-    as_instructions = as_statement("--- Assessment - Instructions ---", "-")
-    print("Welcome!")
-    print("This Quiz is easy, answer the ")
-    print("maths questions!!")
-    print("At the start of a new 'quiz' you can choose ")
-    print("to continue with your previous scores or ")
-    print("start anew.")
-    print()
-    print("---------------------------------")
-
 # establishes that they user has not yet won, lost or played a quiz
 win = 0
 lose = 0
@@ -84,6 +69,7 @@ while play_again == "":
         if yes_no == "Yes":
             losses = 0
             wins = 0
+            ties = 0
     quiz_num_output = as_statement(" Quiz {} ".format(quizzes_played), "=")
 
     quiz_summary = []  # Holds results from each round
@@ -144,10 +130,3 @@ while play_again == "":
 
     print()
     play_again = (input("Push <enter> to play again/continue or any other key to quit"))
-
-# prints all info on all questions of all Quizzes.
-if quizzes_played >= 2:
-    print()
-    print("**** All Quizzes History ****")
-    for thing in end:
-        print(thing)

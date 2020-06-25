@@ -1,7 +1,6 @@
 # imports a random number (used for both numbers)
 import random
 
-
 # checks that what you are inputting is an integer
 
 
@@ -28,7 +27,6 @@ def as_statement(statement, char):
     print(char * len(statement))
     print()
     return ""
-
 
 # establishes the high and low for numbers in questions
 lowest = 0

@@ -21,9 +21,8 @@ highest = 1000
 
 
 num = random.randint(lowest, highest)
-print(num)
 num1 = random.randint(lowest, highest)
-print(num1)
+
 
 math = num + num1
 
