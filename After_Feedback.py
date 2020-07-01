@@ -28,10 +28,6 @@ def as_statement(statement, char):
     print()
     return ""
 
-# establishes the high and low for numbers in the questions
-lowest = 0
-highest = 1000
-
 
 # checks that inputted yes/no is really yes/no
 def yn_checker(question):
@@ -48,6 +44,7 @@ def yn_checker(question):
             print(error)
             print()
 
+
 # asks user if they would like to see the instructions
 yes_no = yn_checker("Would you like to see the instructions? ")
 if yes_no == "Yes":
@@ -57,6 +54,8 @@ if yes_no == "Yes":
     print("Welcome!")
     print("This Quiz is easy, answer the ")
     print("maths questions!!")
+    print("For each game you can pick you high/low")
+    print("numbers for your questions")
     print("At the start of a new 'quiz' you can choose ")
     print("to continue with your previous scores or ")
     print("start anew.")
@@ -64,17 +63,16 @@ if yes_no == "Yes":
     print("---------------------------------")
 
 # establishes that they user has not yet won, lost or played a quiz
-win = 0
-lose = 0
+right = 0
+wrong = 0
 quizzes_played = 0
+questions_answered = 0
 
 end = []  # Holds all results
 
 # play_again loop start
 play_again = ""
 while play_again == "":
-
-    verb = ""
 
     # asking the player if they would like to re-start their score
     quizzes_played += 1
@@ -84,7 +82,13 @@ while play_again == "":
         if yes_no == "Yes":
             losses = 0
             wins = 0
-    quiz_num_output = as_statement(" Quiz {} ".format(quizzes_played), "=")
+
+    # establishes the high and low for numbers in the questions
+    lowest = intcheck("Low Number: ", 0, 100)
+    highest = intcheck("High Number: ", lowest, 100000)
+    print()
+
+    verb = ""
 
     quiz_summary = []  # Holds results from each round
 
@@ -92,10 +96,9 @@ while play_again == "":
     questions = intcheck("How many questions?", 1, 10)
     print()
 
-    # establishes that they user has not yet played a round
-    questions_answered = 0
+    questions_to_be_zeroed = 0
 
-    while questions_answered < questions:
+    while questions_to_be_zeroed < questions:
         # output amount of questions and guesses allowed
         round_of_rounds = as_statement(" Question {} of {} ".format(questions_answered + 1, questions), "*")
 
@@ -110,15 +113,15 @@ while play_again == "":
         math = num + num1
 
         # Asks the questions, compares the reply the answer, prints output (and correct answer if user was wrong)
-        question1 = intcheck("{} + {} = ".format(num, num1), 0, 2000)
+        question1 = intcheck("{} + {} = ".format(num, num1), lowest, highest + highest)
         if question1 == math:
             print("Well done!")
             print()
-            win += 1
+            right += 1
             verb = "Got it right"
         elif question1 != math:
             print()
-            lose += 1
+            wrong += 1
             verb = "guessed"
             print("Sorry, You Answer was Wrong!")
             print("The Answer was {}".format(math))
@@ -130,12 +133,12 @@ while play_again == "":
         else:
             result = "{} + {} = {} : You {} : {}".format(num, num1, math, verb, question1)
         quiz_summary.append("Question #{} : {}".format(questions_answered, result))
-        end.append("Quiz {}: Question #{} : {}".format(quizzes_played, questions_answered,  result))
+        end.append("Question #{} : {}".format(questions_answered,  result))
 
     print()
     print("You have gotten to the end of the quiz")
 
-    final = as_statement("### Wins:{}  |  Losses:{} ###".format(win, lose), "#")
+    final = as_statement("### Right:{}  |  Wrong:{} ###".format(right, wrong), "#")
     # End of quiz, Print Stats
     print()
     print("**** Quiz History ****")
@@ -143,7 +146,8 @@ while play_again == "":
         print(item)
 
     print()
-    play_again = (input("Push <enter> to play again/continue or any other key to quit"))
+    play_again = (input("Push <enter> for more questions or any other key to quit"))
+    print()
 
 # prints all info on all questions of all Quizzes.
 if quizzes_played >= 2:
