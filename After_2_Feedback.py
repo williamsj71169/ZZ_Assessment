@@ -64,7 +64,13 @@ if yes_no == "Yes":
     print("previous score tally or start ")
     print("anew.")
     print()
+    print("At the very end (when you quit)")
+    print("you will be able to see your")
+    print("whole quiz history, with stats")
+    print("and everything.")
+    print()
     print("---------------------------------")
+    print()
 
 # establishes that they user has not yet won, lost or played a quiz
 right = 0
@@ -73,6 +79,7 @@ quizzes_played = 0
 questions_answered = 0
 
 end = []  # Holds all results
+stats = []  # holds all stats results
 
 # play_again loop start
 play_again = ""
@@ -88,11 +95,11 @@ while play_again == "":
             wrong = 0
 
     # establishes the high and low for numbers in the questions
-    lowest = intcheck("Low Number: ", 0, 100)
-    highest = intcheck("High Number: ", lowest, 100000)
+    lowest = intcheck("Low Number: ", 0, 1000)
+    highest = intcheck("High Number: ", lowest, 1000000)
     print()
 
-    verb = ""
+    verb = ""  # empty space for later use
 
     quiz_summary = []  # Holds results from each round
 
@@ -100,11 +107,12 @@ while play_again == "":
     questions = intcheck("How many questions?", 1, 10)
     print()
 
+    # this makes sure that the user does not answer more questions then asked for
     questions_to_be_zeroed = 0
 
     while questions_to_be_zeroed < questions:
         # output amount of questions and guesses allowed
-        round_of_rounds = as_statement(" Question {} of {} ".format(questions_answered + 1, questions), "*")
+        round_of_rounds = as_statement(" Question {} of {} ".format(questions_to_be_zeroed + 1, questions), "*")
 
         print()
 
@@ -118,7 +126,7 @@ while play_again == "":
         math = num + num1
 
         # Asks the questions, compares the reply the answer, prints output (and correct answer if user was wrong)
-        question1 = intcheck("{} + {} = ".format(num, num1), lowest, highest + highest)
+        question1 = intcheck("{} + {} = ".format(num, num1), lowest, 1000000 + 1000000)
         if question1 == math:
             print("Well done!")
             print()
@@ -143,12 +151,26 @@ while play_again == "":
     print()
     print("You have gotten to the end of the quiz")
 
-    final = as_statement("### Right:{}  |  Wrong:{} ###".format(right, wrong), "#")
-    # End of quiz, Print Stats
+    # outputs that quizzes question+answer+right/wrong history
     print()
     print("**** Quiz History ****")
     for item in quiz_summary:
         print(item)
+
+    # makes sure that even if the user re-starts the scoreboard, the end stats have all.
+    if yes_no == "Yes":
+        percent_right = right / questions_to_be_zeroed * 100
+        percent_wrong = wrong / questions_to_be_zeroed * 100
+
+    else:
+        percent_right = right / questions_answered * 100
+        percent_wrong = wrong / questions_answered * 100
+
+    print()
+    print("**** Game Statistics ****")
+    print("Right: {}, ({:.0f}%)\nWrong: {}, ("
+          "{:.0f}%)".format
+          (right, percent_right, wrong, percent_wrong))
 
     print()
     play_again = (input("Push <enter> for more questions or any other key to quit"))
@@ -160,3 +182,13 @@ if quizzes_played >= 2:
     print("**** All Quizzes History ****")
     for thing in end:
         print(thing)
+
+percent_right = right / questions_answered * 100
+percent_wrong = wrong / questions_answered * 100
+
+stats.append("Right: {}, ({:.0f}%)\nWrong: {}, (""{:.0f}%)".format(right, percent_right, wrong, percent_wrong))
+
+print()
+print("**** ALL Quizzes Statistics *****")
+for item in stats:
+    print(item)
