@@ -181,7 +181,8 @@ if quizzes_played >= 2:
 percent_right = total_right / questions_answered * 100
 percent_wrong = total_wrong / questions_answered * 100
 
-stats.append("Right: {}, ({:.0f}%)\nWrong: {}, (""{:.0f}%)".format(total_right, percent_right, total_wrong, percent_wrong))
+stats.append("Right: {}, ({:.0f}%)\nWrong: {}, ("
+             "{:.0f}%)".format(total_right, percent_right, total_wrong, percent_wrong))
 
 if quizzes_played >= 2:
     print()
